@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t syedrakib/udemy_k8s_react_travis_aws -f Dockerfile.dev .
+
+script:
+  - docker run syedrakib/udemy_k8s_react_travis_aws npm run test -- --coverage
