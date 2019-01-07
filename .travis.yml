@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run syedrakib/udemy_k8s_react_travis_aws npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "udemy-k8s-react_travis_aws"
+  env: "UdemyK8sReactTravisAws-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-623822791400"
+  bucket_path: "udemy-k8s-react_travis_aws"
+  access_key_id:
+    secure: $AWS_UDEMY_K8S_REACT_TRAVIS_AWS_ACCESS_KEY_ID
+  secret_access_key:
+    secure: $AWS_UDEMY_K8S_REACT_TRAVIS_AWS_SECRET_KEY
+  on:
+    branch: master
